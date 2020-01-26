@@ -13,6 +13,7 @@
           <th>Isbn</th>
           <th>Fecha Solicitud</th>
           <th>Fecha Entrega</th>
+          <th>Prestado</th>
         </tr>
       </thead>
       <tbody>
@@ -21,6 +22,10 @@
           <td>{{prestamo.codigoIsbn}}</td>
           <td>{{prestamo.fechaSolicitud  | date : 'dd/MM/yyyy'}}</td>
           <td>{{prestamo.fechaEntrega | date:'dd/MM/yyyy'}}</td>
+          <td *ngIf="prestamo.estadoPrestamo else elseBlock">SI</td>
+          <ng-template #elseBlock>
+            <td>NO</td>
+          </ng-template>
         </tr>
       </tbody>
     </table>

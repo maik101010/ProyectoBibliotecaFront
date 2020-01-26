@@ -20,35 +20,39 @@ export class LibroComponent implements OnInit {
     );
   }
 
-
   delete (libro :Libro):void{
 
-    const swalWithBootstrapButtons = swal.mixin({
-  customClass: {
-    confirmButton: 'btn btn-success',
-    cancelButton: 'btn btn-danger'
-  },
-  buttonsStyling: false
+if(libro.cantidad > 0) {
+
+  const swalWithBootstrapButtons = swal.mixin({
+customClass: {
+  confirmButton: 'btn btn-success',
+  cancelButton: 'btn btn-danger'
+},
+buttonsStyling: false
 })
+  swalWithBootstrapButtons.fire({
+          title: 'Está seguro?',
+          text: `Seguro que desea eliminar el libro`,
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonText: 'Si, eliminar!',
+          cancelButtonText: 'No, cancelar!',
+          reverseButtons: true
+        }).then((result) => {
+          if (result.value) {
+            this.apiService.eliminarLibro(libro.codigoIsbn).subscribe(
+              response => {
+                this.ngOnInit();
+              }
+            );
 
-swalWithBootstrapButtons.fire({
-        title: 'Está seguro?',
-        text: `Seguro que desea eliminar el libro`,
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonText: 'Si, eliminar!',
-        cancelButtonText: 'No, cancelar!',
-        reverseButtons: true
-      }).then((result) => {
-        if (result.value) {
-          this.apiService.eliminarLibro(libro.codigoIsbn).subscribe(
-            response => {
-                    this.ngOnInit();
-            }
-          );
+          }
+        })
+}else{
+    swal.fire('Error Libro', "No exiten cantidades para eliminar" , 'error');
+}
 
-        }
-      })
   }
 
 }

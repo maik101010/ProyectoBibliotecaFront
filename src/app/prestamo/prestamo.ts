@@ -3,4 +3,5 @@ export class Prestamo {
   public codigoIsbn: string;
   public fechaSolicitud: string;
   public fechaEntrega: string;
+  public estadoPrestamo: boolean;
 }
