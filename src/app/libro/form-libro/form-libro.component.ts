@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Libro} from '../libro';
-import {Router, ActivatedRoute} from '@angular/router';
+import {Router} from '@angular/router';
 import {BackendApiService} from '../../services/backend-api.service';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-form-libro',
@@ -12,20 +13,19 @@ export class FormLibroComponent implements OnInit {
 
 
   private libro: Libro = new Libro();
-  constructor(private apiService : BackendApiService, private router: Router,
-    private activatedRoute: ActivatedRoute ) { }
+  constructor(private apiService : BackendApiService, private router: Router ) { }
 
   ngOnInit() {
   }
 
-
-
   public create() : void {
-    this.apiService.create(this.libro).subscribe(
+    this.apiService.crearLibro(this.libro).subscribe(
       libro => {
         this.router.navigate(['/libros'])
-        //swal.fire('Cliente Guardado', `Cliente ${cliente.nombre} creado con éxito!`, 'success')
+        swal.fire('Libro Guardado', `Isbn ${libro.codigoIsbn} agregado con éxito!`, 'success')
     }
     );
   }
+
+
 }

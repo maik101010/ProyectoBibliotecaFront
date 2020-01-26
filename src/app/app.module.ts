@@ -9,13 +9,15 @@ import { LibroComponent } from './libro/libro.component';
 import { PrestamoComponent } from './prestamo/prestamo.component';
 import { BackendApiService } from './services/backend-api.service';
 import { FormLibroComponent } from './libro/form-libro/form-libro.component';
+import { FormPrestamoComponent } from './prestamo/form-prestamo/form-prestamo.component';
+import { HeaderComponent } from './header/header.component';
 
 const routes:Routes = [
   {path: '', redirectTo: '/libros', pathMatch:'full'},
   {path: 'libros', component: LibroComponent},
   {path: 'libros/form', component: FormLibroComponent},
-    {path: 'libros/form/:codigoIsbn', component: FormLibroComponent},
-  {path: 'prestamos', component: PrestamoComponent}
+  {path: 'prestamos', component: PrestamoComponent},
+  {path: 'prestamos/form', component: FormPrestamoComponent}
 //  {path: 'libros/form', component: FormComponent},
 //  {path: 'clienlibrostes/form/:id', component: FormComponent}
 ]
@@ -25,7 +27,9 @@ const routes:Routes = [
     AppComponent,
     LibroComponent,
     PrestamoComponent,
-    FormLibroComponent
+    FormLibroComponent,
+    FormPrestamoComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

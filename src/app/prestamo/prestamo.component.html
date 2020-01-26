@@ -1,1 +1,29 @@
-<p>prestamo works!</p>
+<div class='container'>
+<div class="card border-primary mb-3 my-3">
+  <div class="card-header"> Prestamos </div>
+  <div class="card-body text-primary">
+    <h5 class="card-title">Listado de Prestamos</h5>
+    <div class="my-2 text-left">
+      <button class="btn btn-rounded btn-success" type="button" [routerLink]="['/prestamos/form']">Crear Prestamo</button>
+    </div>
+    <table class='table table-bordered table-striped'>
+      <thead>
+        <tr>
+          <th>Nombre Persona</th>
+          <th>Isbn</th>
+          <th>Fecha Solicitud</th>
+          <th>Fecha Entrega</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let prestamo of prestamos">
+          <td>{{prestamo.nombrePersona}}</td>
+          <td>{{prestamo.codigoIsbn}}</td>
+          <td>{{prestamo.fechaSolicitud  | date : 'dd/MM/yyyy'}}</td>
+          <td>{{prestamo.fechaEntrega | date:'dd/MM/yyyy'}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</div>
